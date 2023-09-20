@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import Img from '../../../components/lazyLoading/Img';
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../../hooks/UseFetch";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 

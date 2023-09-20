@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { getApiConfigration, getGenres } from "./store/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -12,7 +13,6 @@ import Home from "./pages/home/Home";
 import PageNotFound from "./pages/404/PageNotFound";
 import SearchResult from "./pages/searchResult/SearchResult";
 import { fetchDataFromApi } from "./utils/api";
-import { getApiConfigration } from "./store/homeSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ function App() {
 
   useEffect(() => {
     ferchApiConfig();
+    genresCall();
   }, []);
 
   const ferchApiConfig = () => {
@@ -37,6 +38,22 @@ function App() {
         console.log(error);
       });
   };
+
+  const genresCall = async () => {
+    const promises = [];
+    const endPoints = ['movie', 'tv'];
+    let allGenres = {};
+    endPoints.forEach((url) => {
+      promises.push(fetchDataFromApi(`/genre/${url}/list`));
+    })
+    const data = await Promise.all(promises)
+    console.log(data);
+    data.map(({genres}) => {
+      return genres.map((item) => (allGenres[item.id] = item))
+    })
+    console.log(allGenres)
+    dispatch(getGenres(allGenres));
+  }
 
   return (
     <BrowserRouter>
