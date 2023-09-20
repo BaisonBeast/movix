@@ -10,7 +10,7 @@ import { PlayIcon } from "../PlayButton";
 import PosterFallback from "../../../assets/no-poster.png";
 import VideoPopup from "../../../components/videoPopup/VidoePopup";
 import dayjs from "dayjs";
-import useFetch from "../../../hooks/UseFetch";
+import UseFetch from "../../../hooks/UseFetch";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -18,7 +18,7 @@ const DetailsBanner = ({ video, crew }) => {
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
   const { mediaType, id } = useParams();
-  const { data, loading } = useFetch(`/${mediaType}/${id}`);
+  const { data, loading } = UseFetch(`/${mediaType}/${id}`);
   const { url } = useSelector((state) => state.home);
   const genres = data?.genres?.map((g) => g.id);
 

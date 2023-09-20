@@ -6,13 +6,13 @@ import Recommendation from "./carousels/Recomendation";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import React from "react";
 import VideosSection from "./videosSection/VideosSection";
-import useFetch from "../../hooks/useFetch";
+import UseFetch from "../../hooks/UseFetch";
 import { useParams } from "react-router-dom";
 
 function Details() {
   const { mediaType, id } = useParams();
-  const { data, loading } = useFetch(`/${mediaType}/${id}/videos`);
-  const { data: credits, loading: creaditLoading } = useFetch(
+  const { data, loading } = UseFetch(`/${mediaType}/${id}/videos`);
+  const { data: credits, loading: creaditLoading } = UseFetch(
     `/${mediaType}/${id}/credits`
   );
   return (
