@@ -6,7 +6,7 @@ import Recommendation from "./carousels/Recomendation";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import React from "react";
 import VideosSection from "./videosSection/VideosSection";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 
 function Details() {
